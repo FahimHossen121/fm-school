@@ -5,29 +5,59 @@ import { ModeToggle } from "./ui/toggle";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { Button } from "./ui/button";
 
 const Navbar = () => {
-  const { theme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme(); // Use resolvedTheme
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+
+    // Directly assign the system theme
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
   }, []);
 
   return (
-    <nav className="flex justify-around items-center p-4 border-b border-gray-300 sticky top-0 backdrop-blur">
-      <div className="flex items-center space-x-2">
-        {mounted && (
-          <Image
-            src={theme === "dark" ? "/darkModeLogo.svg" : "/lightModeLogo.svg"}
-            className="h-8 w-auto"
-            alt="Logo"
-            width={32}
-            height={32}
-          />
-        )}
+    <nav className="flex justify-between items-center p-4 border-b border-gray-300 sticky top-0 backdrop-blur z-50 md:h-[65px]">
+      <div className="flex gap-2">
+        <div className="md:hidden">
+          <button className="mt-0 text-foreground focus:outline-none">
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              ></path>
+            </svg>
+          </button>
+        </div>
+        <div className="flex items-center space-x-2">
+          {mounted && (
+            <img
+              src={
+                resolvedTheme === "dark"
+                  ? "/darkModeLogo.svg"
+                  : "/lightModeLogo.svg"
+              } // Use resolvedTheme
+              className="h-8 w-auto"
+              alt="Logo"
+            />
+          )}
+        </div>
       </div>
-      <ul className="flex list-none gap-4 m-0 p-0">
+      <ul className="hidden md:flex list-none gap-4 m-0 p-0">
         <li>
           <Link href="/">Home</Link>
         </li>
@@ -41,19 +71,15 @@ const Navbar = () => {
           <Link href="/contact">Contact us</Link>
         </li>
       </ul>
-      <ul className="flex list-none gap-4 m-0 p-0">
+      <ul className="flex list-none gap-1 m-0 p-0 ">
         <li>
           <ModeToggle></ModeToggle>
         </li>
         <li>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Login
-          </button>
+          <Button variant="default">Login</Button>
         </li>
         <li>
-          <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-            Logout
-          </button>
+          <Button variant="destructive">Logout</Button>
         </li>
       </ul>
     </nav>
