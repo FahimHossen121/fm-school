@@ -40,19 +40,19 @@
 }
 .dark {
   --background: #272b34; /* Background Primary */
-  --foreground: #dcddde; /* Text Normal */
+  --foreground: #ffff; /* Text Normal */
   --card: #20242b; /* Background Primary Alt */
-  --card-foreground: #dcddde; /* Text Normal */
+  --card-foreground: #ffff; /* Text Normal */
   --popover: #20242b; /* Background Primary Alt */
-  --popover-foreground: #dcddde; /* Text Normal */
+  --popover-foreground: #ffff; /* Text Normal */
   --primary: #61afef; /* Text Accent */
-  --primary-foreground: #dcddde; /* Text Normal */
+  --primary-foreground: #ffff; /* Text Normal */
   --secondary: #20242b; /* Background Primary Alt */
-  --secondary-foreground: #dcddde; /* Text Normal */
+  --secondary-foreground: #ffff; /* Text Normal */
   --muted: #888; /* Text Muted */
-  --muted-foreground: #dcddde; /* Text Normal */
+  --muted-foreground: #ffff; /* Text Normal */
   --accent: #61afef; /* Text Accent */
-  --accent-foreground: #dcddde; /* Text Normal */
+  --accent-foreground: #ffff; /* Text Normal */
   --destructive: #e16d76; /* Text Error */
   --border: #424958; /* Background Modifier Border */
   --input: rgba(0, 0, 0, 0.3); /* Background Modifier Form Field */
@@ -63,11 +63,11 @@
   --chart-4: #e06c75; /* Red */
   --chart-5: #d19a66; /* Orange */
   --sidebar: #20242b; /* Background Primary Alt */
-  --sidebar-foreground: #dcddde; /* Text Normal */
+  --sidebar-foreground: #ffff; /* Text Normal */
   --sidebar-primary: #61afef; /* Text Accent */
-  --sidebar-primary-foreground: #dcddde; /* Text Normal */
+  --sidebar-primary-foreground: #ffff; /* Text Normal */
   --sidebar-accent: #61afef; /* Text Accent */
-  --sidebar-accent-foreground: #dcddde; /* Text Normal */
+  --sidebar-accent-foreground: #ffff; /* Text Normal */
   --sidebar-border: #424958; /* Background Modifier Border */
   --sidebar-ring: #61afef; /* Text Accent */
 }

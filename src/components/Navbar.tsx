@@ -79,7 +79,7 @@ const Navbar = () => {
           <Button variant="default">Login</Button>
         </li>
         <li>
-          <Button variant="destructive">Logout</Button>
+          <Button variant="destructive">Sign Up</Button>
         </li>
       </ul>
     </nav>
