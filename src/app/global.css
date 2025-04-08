@@ -16,7 +16,7 @@
   --primary-foreground: oklch(0.97 0.014 254.604);
   --secondary: oklch(0.967 0.001 286.375);
   --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.967 0.001 286.375);
+  --muted: oklch(0.21 0.006 285.885);
   --muted-foreground: oklch(0.552 0.016 285.938);
   --accent: oklch(0.967 0.001 286.375);
   --accent-foreground: oklch(0.21 0.006 285.885);
@@ -39,20 +39,20 @@
   --sidebar-ring: oklch(0.623 0.214 259.815);
 }
 .dark {
-  --background: #272b34; /* Background Primary */
-  --foreground: #ffff; /* Text Normal */
-  --card: #20242b; /* Background Primary Alt */
-  --card-foreground: #ffff; /* Text Normal */
+  --background: #1f293a; /* Background Primary */
+  --foreground: #fff; /* Text Normal */
+  --card: #0f162b; /* Background Primary Alt */
+  --card-foreground: #fff; /* Text Normal */
   --popover: #20242b; /* Background Primary Alt */
-  --popover-foreground: #ffff; /* Text Normal */
+  --popover-foreground: #fff; /* Text Normal */
   --primary: #61afef; /* Text Accent */
-  --primary-foreground: #ffff; /* Text Normal */
+  --primary-foreground: #fff; /* Text Normal */
   --secondary: #20242b; /* Background Primary Alt */
-  --secondary-foreground: #ffff; /* Text Normal */
+  --secondary-foreground: #fff; /* Text Normal */
   --muted: #888; /* Text Muted */
-  --muted-foreground: #ffff; /* Text Normal */
+  --muted-foreground: #fff; /* Text Normal */
   --accent: #61afef; /* Text Accent */
-  --accent-foreground: #ffff; /* Text Normal */
+  --accent-foreground: #fff; /* Text Normal */
   --destructive: #e16d76; /* Text Error */
   --border: #424958; /* Background Modifier Border */
   --input: rgba(0, 0, 0, 0.3); /* Background Modifier Form Field */
@@ -63,11 +63,11 @@
   --chart-4: #e06c75; /* Red */
   --chart-5: #d19a66; /* Orange */
   --sidebar: #20242b; /* Background Primary Alt */
-  --sidebar-foreground: #ffff; /* Text Normal */
+  --sidebar-foreground: #fff; /* Text Normal */
   --sidebar-primary: #61afef; /* Text Accent */
-  --sidebar-primary-foreground: #ffff; /* Text Normal */
+  --sidebar-primary-foreground: #fff; /* Text Normal */
   --sidebar-accent: #61afef; /* Text Accent */
-  --sidebar-accent-foreground: #ffff; /* Text Normal */
+  --sidebar-accent-foreground: #fff; /* Text Normal */
   --sidebar-border: #424958; /* Background Modifier Border */
   --sidebar-ring: #61afef; /* Text Accent */
 }
@@ -151,4 +151,13 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.container {
+  width: fixed;
+}
+
+.hover-effect:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
 }
