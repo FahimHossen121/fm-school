@@ -4,28 +4,17 @@ import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import { buttonVariants } from "@/components/ui/button";
+import fs from "fs";
+import matter from "gray-matter";
 
-const blogs = [
-  {
-    id: 1,
-    title: "Blockchain Development",
-    description:
-      "This is a sample description of the blog post that will be displayed on the card.",
-    slug: "blockchain",
+// Read the content directory and extract blog data
+const dirContent = fs.readdirSync("content", "utf-8");
 
-    image: "/Hero.jpg",
-  },
-  {
-    id: 2,
-    title: "C Programming For Everyone Lecture 1",
-    description:
-      "Another intriguing blog post description that captures the essence of the content.",
-    slug: "c-programming",
-
-    image: "/Course1.png",
-  },
-  // Add more blogs as needed
-];
+const blogs = dirContent.map((file) => {
+  const fileContent = fs.readFileSync(`content/${file}`, "utf-8");
+  const { data } = matter(fileContent);
+  return data;
+});
 
 export default function Blogs() {
   return (
@@ -36,21 +25,31 @@ export default function Blogs() {
           Blog Categories
         </h2>
         <div className="flex flex-wrap justify-center mx-6">
-          {blogs.map((blog) => (
-            <div key={blog.id} className="p-4 md:w-1/3 flex justify-center">
+          {blogs.map((blog, index) => (
+            <div key={index} className="p-4 md:w-1/3 flex justify-center">
               <div className="max-w-sm rounded-2xl overflow-hidden shadow-lg bg-card hover-effect">
-                <Image
+                <img
                   className="object-cover w-full h-auto aspect-video" // Crop to maintain 16:9 aspect ratio
                   src={blog.image}
                   width={1280}
                   height={720}
                   alt={blog.title}
                 />
+
                 <div className="px-6 md:my-11 lg:my-0 md:h-72 lg:h-64 lg:py-4 xl:h-52 mt-5">
                   <div className="title-font flex text-lg font-medium text-foreground mb-3">
                     {blog.title}
                   </div>
                   <p className="text-muted text-base">{blog.description}</p>
+                  <div className="text-sm mb-4">
+                    <span>
+                      {new Date(blog.date).toLocaleDateString("en-GB", {
+                        day: "2-digit",
+                        month: "long",
+                        year: "numeric",
+                      })}
+                    </span>
+                  </div>
                 </div>
                 <div className="px-6 pt-4 pb-2">
                   <Link
