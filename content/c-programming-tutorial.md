@@ -228,5 +228,3 @@ int main() {
 ## Conclusion
 
 Congratulations on making it through this C programming tutorial! You’ve covered everything from the basics of C to advanced topics like structures and memory management. Keep practicing and exploring the vast capabilities of C to enhance your programming skills.
-
-Happy coding!
