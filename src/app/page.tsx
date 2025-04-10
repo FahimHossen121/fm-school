@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Courses from "@/components/Courses";
 import Topics from "@/components/Topics";
-import Temporary from "@/components/Temporary";
+import Footer from "@/components/Footer";
 
 const page = () => {
   return (
@@ -13,8 +13,9 @@ const page = () => {
       <Topics />
       <Hero />
       <Courses />
-      <Temporary />
+      <Footer />
     </main>
   );
 };
+
 export default page;

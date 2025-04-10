@@ -1,6 +1,6 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 @plugin "@tailwindcss/typography";
+@config "../../tailwind.config.js";
 
 @custom-variant dark (&:is(.dark *));
 @theme {
@@ -197,4 +197,28 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
 
 code[data-line-numbers-max-digits="4"] > [data-line]::before {
   width: 2.25rem;
+}
+
+/* From Js mastery */
+
+@layer utilities {
+  /* footer section */
+  .social-icon {
+    @apply w-12 h-12 rounded-full flex justify-center items-center  border border-black;
+  }
+  .social-icon:hover {
+    @apply border-blue-100;
+  }
+
+  .theme-icon {
+    filter: invert(1); /* Default for light mode */
+  }
+
+  .dark .theme-icon {
+    filter: invert(0); /* Adjust for dark mode */
+  }
+}
+
+* {
+  scroll-behavior: smooth;
 }
