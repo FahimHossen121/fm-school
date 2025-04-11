@@ -1,8 +1,4 @@
 "use client";
-
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
-import Topics from "@/components/Topics";
 import { useState, useEffect } from "react";
 
 interface FormData {
@@ -76,8 +72,6 @@ const Contact = () => {
 
   return (
     <>
-      <Navbar />
-      <Topics />
       <div className="flex flex-col items-center justify-center gap-10 my-10 mx-5 md:mx-20">
         <div className="relative text-center">
           <h1 className="px-4 text-4xl md:text-6xl font-bold">Get in touch</h1>
@@ -202,7 +196,6 @@ const Contact = () => {
           </p>
         )}
       </div>
-      <Footer />
     </>
   );
 };

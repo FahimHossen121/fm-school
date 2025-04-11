@@ -1,11 +1,7 @@
 import Image from "next/image";
-import Navbar from "@/components/Navbar";
-import Topics from "@/components/Topics";
 export default function About() {
   return (
     <>
-      <Navbar />
-      <Topics />
       <div>
         <div className="flex flex-col items-center justify-center py-32 bg-gray-100 dark:bg-gray-700">
           <div className="w-full max-w-4xl p-8 bg-white dark:bg-gray-800 shadow-lg rounded-lg">

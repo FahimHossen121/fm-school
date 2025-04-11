@@ -9,11 +9,8 @@ import Footer from "@/components/Footer";
 const page = () => {
   return (
     <main>
-      <Navbar />
-      <Topics />
       <Hero />
       <Courses />
-      <Footer />
     </main>
   );
 };

@@ -2,11 +2,9 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import Navbar from "@/components/Navbar";
 import { buttonVariants } from "@/components/ui/button";
 import fs from "fs";
 import matter from "gray-matter";
-import Topics from "@/components/Topics";
 
 // Read the content directory and extract blog data
 const dirContent = fs.readdirSync("content", "utf-8");
@@ -20,8 +18,6 @@ const blogs = dirContent.map((file) => {
 export default function Blogs() {
   return (
     <>
-      <Navbar />
-      <Topics />
       <div className="container mx-auto lg:my-2">
         <h2 className="text-3xl font-medium title-font text-foreground my-10 text-center">
           Blog Categories

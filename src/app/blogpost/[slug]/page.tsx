@@ -11,8 +11,6 @@ import rehypePrettyCode from "rehype-pretty-code";
 import { transformerCopyButton } from "@rehype-pretty/transformers";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
-import Navbar from "@/components/Navbar";
-import Topics from "@/components/Topics";
 import Image from "next/image";
 
 export default async function Page({ params }) {
@@ -48,9 +46,6 @@ export default async function Page({ params }) {
 
   return (
     <>
-      <Navbar />
-      <Topics />
-
       <section className="min-h-screen bg-background text-foreground">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative h-80 w-full my-6 rounded-lg shadow-lg overflow-hidden"></div>
