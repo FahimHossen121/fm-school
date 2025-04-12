@@ -41,7 +41,7 @@
 .dark {
   --background: #1f293a; /* Background Primary */
   --foreground: #fff; /* Text Normal */
-  --card: #0f162b; /* Background Primary Alt */
+  --card: oklch(37.2% 0.044 257.287); /* Background Primary Alt */
   --card-foreground: #fff; /* Text Normal */
   --popover: #20242b; /* Background Primary Alt */
   --popover-foreground: #fff; /* Text Normal */
@@ -220,4 +220,13 @@ code[data-line-numbers-max-digits="4"] > [data-line]::before {
 
 * {
   scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  scroll-margin-top: 5rem;
 }
