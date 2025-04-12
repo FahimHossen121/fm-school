@@ -27,11 +27,12 @@ const Navbar = () => {
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
     { href: "/blogs", label: "Blogs" },
+    { href: "/tutorials", label: "Tutorials" },
     { href: "/contact", label: "Contact us" },
   ];
 
   return (
-    <nav className="p-4 bg-card/80 sticky top-0 border-b backdrop-blur z-50 border-card">
+    <nav className="p-4 bg-card/80 sticky top-0 border-b backdrop-blur z-100 border-card">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo and Hamburger Menu */}
         <div className="flex gap-2">
