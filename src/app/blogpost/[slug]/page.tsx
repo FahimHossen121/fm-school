@@ -13,8 +13,13 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import Image from "next/image";
 
-export default async function Page({ params }) {
-  const filepath = `content/${params.slug}.md`;
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const filepath = `content/${slug}.md`;
 
   if (!fs.existsSync(filepath)) {
     notFound();
