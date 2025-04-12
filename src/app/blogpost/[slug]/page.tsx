@@ -12,6 +12,7 @@ import { transformerCopyButton } from "@rehype-pretty/transformers";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default async function Page({
   params,
@@ -49,25 +50,55 @@ export default async function Page({
 
   const htmlContent = (await processor.process(content)).toString();
 
+  // Extract h2 headings for the TOC
+  const headings = Array.from(content.matchAll(/^##\s(.+)$/gm)).map(
+    (match) => match[1]
+  );
+
   return (
     <>
       <section className="min-h-screen bg-background text-foreground">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative h-80 w-full my-6 rounded-lg shadow-lg overflow-hidden"></div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold mb-4 text-center">
-            {data.title}
-          </h1>
-          <p className="text-lg mb-2 border-l-4 border-zinc-500 pl-4 italic text-muted-foreground">
-            &quot;{data.description}&quot;
-          </p>
-          <div className="flex flex-wrap justify-between items-center text-sm text-muted-foreground mb-6">
-            <p className="italic">By {data.author}</p>
-            <p>Updated: {data.date}</p>
+        <div className="w-full max-w-full mx-0 px-4 mt-8 sm:px-6 lg:px-8 flex flex-col lg:flex-row">
+          {/* Table of Contents */}
+          <aside className="lg:w-1/4 lg:sticky lg:top-16 lg:self-start lg:mr-8 mb-8 lg:mb-0">
+            <div className="bg-card text-card-foreground p-4 rounded-lg shadow">
+              <h2 className="text-lg font-bold mb-4 text-primary">
+                Table of Contents
+              </h2>
+              <ul className="space-y-2">
+                {headings.map((heading, index) => (
+                  <li key={index}>
+                    <a
+                      href={`#${heading.toLowerCase().replace(/\s+/g, "-")}`}
+                      className="text-sm text-primary hover:underline"
+                    >
+                      {heading}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </aside>
+
+          {/* Blog Content */}
+          <div className="lg:w-3/4">
+            <h1
+              id={data.title.toLowerCase().replace(/\s+/g, "-")}
+              className="text-3xl sm:text-4xl font-extrabold mb-4 text-center mt-10 text-primary"
+              style={{ scrollMarginTop: "5rem" }}
+            >
+              {data.title}
+            </h1>
+            {/* <p className="text-lg mb-2 border-l-4 border-muted pl-4 italic text-muted-foreground">
+              &quot;{data.description}&quot;
+            </p> */}
+            <div className="flex flex-wrap justify-between items-center text-sm text-muted-foreground mb-6"></div>
+            <div
+              className="prose dark:prose-invert lg:prose-xl text-foreground"
+              dangerouslySetInnerHTML={{ __html: htmlContent }}
+              style={{ scrollMarginTop: "5rem", maxWidth: "100%" }}
+            ></div>
           </div>
-          <div
-            dangerouslySetInnerHTML={{ __html: htmlContent }}
-            className="prose dark:prose-invert"
-          ></div>
         </div>
       </section>
     </>
