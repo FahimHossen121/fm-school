@@ -3,6 +3,7 @@
 
 @custom-variant dark (&:is(.dark *));
 @theme {
+  --text-tiny: 0.625rem;
 }
 :root {
   --radius: 0.75rem;
