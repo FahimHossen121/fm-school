@@ -18,18 +18,21 @@ interface BlogData {
   content: string;
 }
 
-export default function Page({ params }: { params: Promise<{ slug: string }> }) {
+export default function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const [data, setData] = useState<BlogData | null>(null);
   const [htmlContent, setHtmlContent] = useState<string>("");
   const [headings, setHeadings] = useState<string[]>([]);
 
-  
   const [slug, setSlug] = useState<string | null>(null);
 
   useEffect(() => {
     const unwrapParams = async () => {
       const resolvedParams = await params;
-      setSlug(resolvedParams.slug);  
+      setSlug(resolvedParams.slug);
     };
 
     unwrapParams();
@@ -37,7 +40,7 @@ export default function Page({ params }: { params: Promise<{ slug: string }> }) 
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!slug) return;  
+      if (!slug) return;
 
       try {
         const response = await axios.get(`/api/blogpost?slug=${slug}`);
@@ -54,7 +57,10 @@ export default function Page({ params }: { params: Promise<{ slug: string }> }) 
           .use(rehypePrettyCode, {
             theme: "github-dark",
             transformers: [
-              transformerCopyButton({ visibility: "always", feedbackDuration: 3000 }),
+              transformerCopyButton({
+                visibility: "always",
+                feedbackDuration: 3000,
+              }),
             ],
           })
           .use(rehypeStringify);
@@ -66,14 +72,13 @@ export default function Page({ params }: { params: Promise<{ slug: string }> }) 
           (match) => match[1]
         );
         setHeadings(headings);
-
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
-  }, [slug]);  
+  }, [slug]);
 
   if (!data) {
     return (
@@ -89,7 +94,9 @@ export default function Page({ params }: { params: Promise<{ slug: string }> }) 
         {/* Table of Contents */}
         <aside className="lg:w-1/4 lg:sticky lg:top-16 lg:self-start  lg:mr-8 mb-8 lg:mb-0">
           <div className="bg-card text-card-foreground p-4 rounded-lg shadow">
-            <h2 className="text-lg font-bold mb-4 text-primary">Table of Contents</h2>
+            <h2 className="text-lg font-bold mb-4 text-primary">
+              Table of Contents
+            </h2>
             <ul className="space-y-2">
               {headings.map((heading, index) => (
                 <li key={index}>

@@ -1,5 +1,4 @@
 "use client"; // Ensure this component is client-side rendered
-
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "next/navigation";
 import Sidebar from "../../Sidebar";
@@ -118,6 +117,7 @@ const Page: React.FC = () => {
             <div>
               <h2>Current slug: {slug}</h2>
             </div>
+            <div className="content"></div>
           </section>
         </main>
       </div>

@@ -115,25 +115,25 @@ const Page: React.FC = () => {
     };
 
     return (
-        <div className="max-w-6xl mx-auto px-4 py-10">
-            <h1 className="text-3xl font-bold text-center mb-10">📚 Blog Manager</h1>
+        <div className="max-w-6xl mx-auto px-4 py-10 bg-background text-foreground">
+            <h1 className="text-3xl font-bold text-center mb-10 text-primary">📚 Blog Manager</h1>
 
             {isLoading ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {Array.from({ length: 3 }).map((_, i) => (
                         <div
                             key={i}
-                            className="w-full h-[420px] border rounded-lg shadow-md p-4 flex flex-col justify-between animate-pulse"
+                            className="w-full h-[420px] border border-border rounded-lg shadow-md p-4 flex flex-col justify-between animate-pulse bg-card"
                         >
-                            <div className="w-full h-40 bg-gray-300 rounded mb-3"></div>
+                            <div className="w-full h-40 bg-muted rounded mb-3"></div>
                             <div className="flex-1 space-y-2">
-                                <div className="h-5 bg-gray-300 rounded w-3/4"></div>
-                                <div className="h-4 bg-gray-300 rounded w-full"></div>
-                                <div className="h-4 bg-gray-300 rounded w-5/6"></div>
+                                <div className="h-5 bg-muted rounded w-3/4"></div>
+                                <div className="h-4 bg-muted rounded w-full"></div>
+                                <div className="h-4 bg-muted rounded w-5/6"></div>
                             </div>
                             <div className="flex gap-2 mt-4">
-                                <div className="h-8 w-16 bg-gray-300 rounded"></div>
-                                <div className="h-8 w-16 bg-gray-300 rounded"></div>
+                                <div className="h-8 w-16 bg-muted rounded"></div>
+                                <div className="h-8 w-16 bg-muted rounded"></div>
                             </div>
                         </div>
                     ))}
@@ -143,19 +143,19 @@ const Page: React.FC = () => {
                     {blogs.map((blog) => (
                         <div
                             key={blog._id}
-                            className="bg-white rounded-xl shadow-md p-4 hover:shadow-lg transition-all duration-300"
+                            className="bg-card rounded-xl shadow-md p-4 hover:shadow-lg transition-all duration-300"
                         >
                             <img
                                 src={`${blog.image}?t=${Date.now()}`}
                                 alt={blog.title}
                                 className="w-full h-40 object-cover rounded-md mb-4"
                             />
-                            <h2 className="text-lg text-black font-semibold line-clamp-2">{blog.title}</h2>
-                            <p className="text-gray-600 text-sm mt-2 line-clamp-3">{blog.description}</p>
+                            <h2 className="text-lg font-semibold line-clamp-2 text-card-foreground">{blog.title}</h2>
+                            <p className="text-sm mt-2 line-clamp-3 text-muted-foreground">{blog.description}</p>
                             <div className="flex justify-end gap-2 mt-4">
                                 <button
                                     onClick={() => openEditModal(blog)}
-                                    className="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700"
+                                    className="px-3 py-1 text-sm bg-primary text-primary-foreground rounded hover:bg-primary/90"
                                 >
                                     Edit
                                 </button>
@@ -163,8 +163,8 @@ const Page: React.FC = () => {
                                     onClick={() => handleDelete(blog._id)}
                                     disabled={deletingId === blog._id}
                                     className={`px-3 py-1 text-sm text-white rounded ${deletingId === blog._id
-                                        ? 'bg-red-300 cursor-not-allowed'
-                                        : 'bg-red-500 hover:bg-red-600'
+                                        ? 'bg-destructive/50 cursor-not-allowed'
+                                        : 'bg-destructive hover:bg-destructive/90'
                                         }`}
                                 >
                                     {deletingId === blog._id ? 'Deleting...' : 'Delete'}
@@ -177,9 +177,9 @@ const Page: React.FC = () => {
 
             {isEditing && selectedBlog && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 backdrop-blur-sm px-4 py-20">
-                    <div className="bg-white rounded-xl p-6 w-full max-w-md shadow-xl">
-                        <h3 className="text-xl font-semibold mb-2">Edit Blog</h3>
-                        <p className="text-xs text-red-500 mb-4">Note: Changing title may affect URL.</p>
+                    <div className="bg-card rounded-xl p-6 w-full max-w-md shadow-xl">
+                        <h3 className="text-xl font-semibold mb-2 text-card-foreground">Edit Blog</h3>
+                        <p className="text-xs text-destructive mb-4">Note: Changing title may affect URL.</p>
 
                         <input
                             type="text"
@@ -187,7 +187,7 @@ const Page: React.FC = () => {
                             value={selectedBlog.title}
                             onChange={handleEditChange}
                             placeholder="Title"
-                            className="w-full p-2 border border-gray-300 rounded mb-4"
+                            className="w-full p-2 border border-border rounded mb-4 bg-input text-foreground"
                         />
 
                         <label htmlFor="image">
@@ -211,7 +211,7 @@ const Page: React.FC = () => {
                             onChange={handleEditChange}
                             placeholder="Description"
                             rows={3}
-                            className="w-full p-2 border border-gray-300 rounded mb-4"
+                            className="w-full p-2 border border-border rounded mb-4 bg-input text-foreground"
                         />
 
                         <textarea
@@ -220,20 +220,20 @@ const Page: React.FC = () => {
                             onChange={handleEditChange}
                             placeholder="Content"
                             rows={6}
-                            className="w-full p-2 border border-gray-300 rounded mb-4"
+                            className="w-full p-2 border border-border rounded mb-4 bg-input text-foreground"
                         />
 
                         <div className="flex justify-end gap-2">
                             <button
                                 onClick={closeEditModal}
-                                className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+                                className="px-4 py-2 bg-muted text-muted-foreground rounded hover:bg-muted/90"
                             >
                                 Cancel
                             </button>
                             <button
                                 onClick={handleEditSubmit}
                                 disabled={isSaving}
-                                className={`px-4 py-2 text-white rounded ${isSaving ? 'bg-green-300' : 'bg-green-500 hover:bg-green-600'
+                                className={`px-4 py-2 text-white rounded ${isSaving ? 'bg-primary/50' : 'bg-primary hover:bg-primary/90'
                                     }`}
                             >
                                 {isSaving ? 'Saving...' : 'Save'}

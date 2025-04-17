@@ -60,27 +60,31 @@ export default function Blogs() {
   }
 
   return (
-    <div className="container mx-auto lg:my-2">
-      <h2 className="text-xl font-semibold title-font text-foreground my-10 text-center tracking-tight">
-        Blog Categories
-      </h2>
+    <main className="min-h-screen">
+      <div className="container mx-auto lg:my-2">
+        <h2 className="text-xl font-semibold title-font text-foreground my-10 text-center tracking-tight">
+          Blog Categories
+        </h2>
 
-      {blogs.length === 0 ? (
-        <p className="text-center text-muted-foreground">No blogs available.</p>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mx-6">
-          {blogs.map((blog) => (
-            <BlogCard
-              key={blog.id || blog.slug}
-              title={blog.title}
-              description={blog.description}
-              imageUrl={blog.image || "/placeholder.jpg"}
-              slug={blog.slug}
-              publishedAt={blog.publishedAt}
-            />
-          ))}
-        </div>
-      )}
-    </div>
+        {blogs.length === 0 ? (
+          <p className="text-center text-muted-foreground">
+            No blogs available.
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mx-6">
+            {blogs.map((blog) => (
+              <BlogCard
+                key={blog.id || blog.slug}
+                title={blog.title}
+                description={blog.description}
+                imageUrl={blog.image || "/placeholder.jpg"}
+                slug={blog.slug}
+                publishedAt={blog.publishedAt}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </main>
   );
 }

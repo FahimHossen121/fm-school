@@ -55,12 +55,12 @@ function NewBlogPage() {
   };
 
   return (
-    <div className="flex justify-center py-10 px-4">
-      <div className="w-full max-w-2xl bg-amber-50 shadow-xl rounded-2xl p-8">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Create New Blog</h1>
+    <div className="flex justify-center py-10 px-4 bg-background text-foreground">
+      <div className="w-full max-w-2xl bg-card shadow-xl rounded-xl p-8">
+        <h1 className="text-3xl font-bold text-card-foreground mb-6 text-center">Create New Blog</h1>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="title" className="block text-sm font-semibold text-gray-700 mb-1">
+            <label htmlFor="title" className="block text-sm font-semibold text-muted-foreground mb-1">
               Title
             </label>
             <input
@@ -69,13 +69,13 @@ function NewBlogPage() {
               name="title"
               value={data.title}
               onChange={handleChange}
-              className="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
               required
             />
           </div>
 
           <div>
-            <label htmlFor="description" className="block text-sm font-semibold text-gray-700 mb-1">
+            <label htmlFor="description" className="block text-sm font-semibold text-muted-foreground mb-1">
               Description
             </label>
             <textarea
@@ -84,13 +84,13 @@ function NewBlogPage() {
               value={data.description}
               onChange={handleChange}
               rows={3}
-              className="w-full border border-gray-300 px-4 py-2 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-border px-4 py-2 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary"
               required
             />
           </div>
 
           <div>
-            <label htmlFor="content" className="block text-sm font-semibold text-gray-700 mb-1">
+            <label htmlFor="content" className="block text-sm font-semibold text-muted-foreground mb-1">
               Content
             </label>
             <textarea
@@ -99,13 +99,13 @@ function NewBlogPage() {
               value={data.content}
               onChange={handleChange}
               rows={5}
-              className="w-full border border-gray-300 px-4 py-2 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-border px-4 py-2 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary"
               required
             />
           </div>
 
           <div>
-            <label htmlFor="image" className="block text-sm font-semibold text-gray-700 mb-1">
+            <label htmlFor="image" className="block text-sm font-semibold text-muted-foreground mb-1">
               Upload Image
             </label>
             <input
@@ -114,14 +114,14 @@ function NewBlogPage() {
               name="image"
               ref={fileInputRef}
               onChange={handleFileChange}
-              className="w-full text-gray-600 border border-gray-300 px-4 py-2 rounded-lg focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+              className="w-full text-muted-foreground border border-border px-4 py-2 rounded-lg focus:outline-none file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-muted file:text-muted-foreground hover:file:bg-muted-foreground/10"
               required
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition duration-300"
+            className="w-full bg-primary text-primary-foreground font-semibold py-3 rounded-lg hover:bg-primary/90 transition duration-300"
           >
             Submit Blog
           </button>
