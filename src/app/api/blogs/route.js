@@ -60,6 +60,6 @@ export async function POST(request) {
 
 export async function GET(request) {
   await connecDB();
-  const blogs = await Blog.find({}).sort({ createdAt: -1 });
+  const blogs = await Blog.find({}).sort();
   return NextResponse.json({ success: true, data: blogs });
 }

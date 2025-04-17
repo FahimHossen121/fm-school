@@ -1,3 +1,11 @@
+---
+title: Introduction to html
+description: This is HTML tutorial and this is for learning HTML
+slug: introduction
+date: 02/03/2025
+image: /Hero.jpg
+---
+
 # Introduction to HTML
 
 ## What is HTML?
