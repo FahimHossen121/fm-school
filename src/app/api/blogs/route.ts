@@ -1,23 +1,28 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import fs from "fs";
 import path from "path";
 import Blog from "../../../lib/models/blogModel";
 import connecDB from "../../../lib/config/db";
 
-export async function POST(request) {
+export async function POST(request:NextRequest) {
   await connecDB();
   const formData = await request.formData();
   const rawTitle = formData.get("title");
 
-  const slug = rawTitle
+  if (!rawTitle) {
+    return NextResponse.json({
+      success: false,
+      message: "Title is required",
+    });
+  }
+
+  const slug = rawTitle.toString()
     .toLowerCase()
     .replace(/[^a-z0-9\s]/g, "")
     .trim()
     .replace(/\s+/g, "-")
     .replace(/^-+|-+$/g, "");
 
-  //  const isValid = /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug);
-  //  console.log({ slug, isValid });
 
   const exist = await Blog.findOne({ slug: slug });
   if (exist) {
@@ -27,6 +32,13 @@ export async function POST(request) {
     });
   }
   const file = formData.get("image");
+
+  if (!file || typeof file === "string") {
+    return NextResponse.json({
+      success: false,
+      message: "Image file is required",
+    });
+  }
 
   const uploadDir = path.join(process.cwd(), "public", "blogs");
   if (!fs.existsSync(uploadDir)) {
@@ -58,7 +70,7 @@ export async function POST(request) {
   });
 }
 
-export async function GET(request) {
+export async function GET() {
   await connecDB();
   const blogs = await Blog.find({}).sort();
   return NextResponse.json({ success: true, data: blogs });

@@ -4,7 +4,10 @@ import path from "path";
 import Blog from "../../../../lib/models/blogModel";
 import connecDB from "../../../../lib/config/db";
 
-export async function DELETE(request, { params }) {
+export async function DELETE(
+  request: Request,
+  { params }: { params: { id: string } }
+) {
   await connecDB();
   const id = await params.id;
   try {
@@ -36,7 +39,10 @@ export async function DELETE(request, { params }) {
   }
 }
 
-export async function PUT(req, { params }) {
+export async function PUT(
+  req: Request,
+  { params }: { params: { id: string } }
+) {
   await connecDB();
   const { id } = await params;
   const formData = await req.formData();
@@ -75,20 +81,46 @@ export async function PUT(req, { params }) {
         fs.mkdirSync(uploadDir, { recursive: true });
       }
 
-      const filename = `${Date.now()}-${file.name}`;
+      const filename = `${Date.now()}-${(file as File)?.name}`;
       const filePath = path.join(uploadDir, filename);
 
-      const buffer = Buffer.from(await file.arrayBuffer());
+      const buffer = Buffer.from(await (file as File).arrayBuffer());
       fs.writeFileSync(filePath, buffer);
       imagePath = `/blogs/${filename}`;
     }
     const rawTitle = formData.get("title");
+    if (!rawTitle) {
+      return NextResponse.json(
+        { success: false, message: "Title is required" },
+        { status: 400 }
+      );
+    }
     const slug = rawTitle
-      .toLowerCase()
-      .replace(/[^a-z0-9\s]/g, "")
-      .trim()
-      .replace(/\s+/g, "-")
-      .replace(/^-+|-+$/g, "");
+      ? rawTitle
+          .toString()
+          .toLowerCase()
+          .replace(/[^a-z0-9\s]/g, "")
+          .trim()
+          .replace(/\s+/g, "-")
+          .replace(/^-+|-+$/g, "")
+      : "";
+
+    const exist = await Blog.findOne({ slug: slug, _id: { $ne: id } });
+    if (exist) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Slug already exists, please try another one",
+        },
+        { status: 400 }
+      );
+    }
+    if (!old) {
+      return NextResponse.json(
+        { success: false, message: "Blog not found" },
+        { status: 404 }
+      );
+    }
     const updatedBlog = await Blog.findByIdAndUpdate(
       id,
       {

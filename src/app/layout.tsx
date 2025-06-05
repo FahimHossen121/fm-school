@@ -1,7 +1,6 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import "./global.css";
 import Navbar from "@/components/Navbar";
-import Topics from "@/components/Topics";
 import Footer from "@/components/Footer";
 export const metadata = {
   title: "Next.js",
